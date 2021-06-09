@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925cb5c8fc4ddd445a52904daa0fafe0, type: 3}
+  m_Name: 19_MorionHat
+  m_EditorClassIdentifier: 
+  ItemName: Morion
+  ItemPrice: 100
+  Thumbnail: {fileID: 21300000, guid: dbf9a903bc59f3b458aae093b9b53397, type: 3}
+  Model: {fileID: 3676491263735785845, guid: d02b3e55c9095e644ac173900a1b7275, type: 3}

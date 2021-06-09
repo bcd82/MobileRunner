@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925cb5c8fc4ddd445a52904daa0fafe0, type: 3}
+  m_Name: 22_RobinHood
+  m_EditorClassIdentifier: 
+  ItemName: Robin Hood
+  ItemPrice: 100
+  Thumbnail: {fileID: 21300000, guid: 68e1601074d079a4a8d3ff022a7154c7, type: 3}
+  Model: {fileID: 4254472677226421900, guid: 2a094b529bc66a741b0e1154c9c42607, type: 3}
