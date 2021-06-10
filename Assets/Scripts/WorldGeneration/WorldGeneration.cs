@@ -62,7 +62,9 @@ public class WorldGeneration : MonoBehaviour
     private void SpawnNewChunk() // if position is far enough from last chunk spawn new chunk
     {
         List<GameObject> chunksToSpawn;
-        chunksToSpawn = chunksCreated < chunkOnScreen ? chunkPrefab : chunkPrefab_2;
+        chunksToSpawn = chunkPrefab_2.Count > 0
+            ? chunksCreated < chunkOnScreen ? chunkPrefab : chunkPrefab_2
+            : chunkPrefab;
         // get a random index for which prefab to spawn
         int randomIndex = Random.Range(0, chunksToSpawn.Count);
 
