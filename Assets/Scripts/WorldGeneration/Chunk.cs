@@ -15,13 +15,12 @@ public class Chunk : MonoBehaviour
 
     private List<GameObject> createdFish = new List<GameObject>();
     public bool instatnces;
-    public GameStats gs;
-    
+
 
 
     public Chunk ShowChunk()
     {
-     
+
         transform.gameObject.BroadcastMessage("OnShowChunk", SendMessageOptions.DontRequireReceiver); // will broadcat a message to all children, SendMessageOptions.DontRequireReceiver - allows to broadcast to objects with no receiver
         gameObject.SetActive(true);
         if (instatnces)
@@ -40,7 +39,7 @@ public class Chunk : MonoBehaviour
         return this;
     }
 
-    private void InstantiateFish ()
+    private void InstantiateFish()
     {
         // decides where to place fish
         FishTransforms = Random.Range(1f, 0f) > 0.5f ? FishTransforms1 : FishTransforms2;
@@ -50,17 +49,17 @@ public class Chunk : MonoBehaviour
             FishManager.Instance.AddFish();
             if (FishManager.Instance.fishCreated == FishManager.Instance.specialFishIndex)
             {
-                 fishType = 1;
-                 FishManager.Instance.IncrementSpecialIndex();
+                fishType = 1;
+                FishManager.Instance.IncrementSpecialIndex();
             }
             else
             {
-                 fishType = 0;
+                fishType = 0;
             }
-            createdFish.Add( Instantiate(Fish[fishType], t.position, t.rotation));
-            }
-    }
+            createdFish.Add(Instantiate(Fish[fishType], t.position, t.rotation));
         }
-    
- 
+    }
+}
+
+
 

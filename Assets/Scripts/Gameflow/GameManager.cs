@@ -46,4 +46,9 @@ public class GameManager : MonoBehaviour
         }
         cameras[(int)c].SetActive(true); // sets the defined Enum camera to active
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
