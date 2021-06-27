@@ -2676,7 +2676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishCreated: 0
-  specialFishIndex: 5
+  specialFishIndex: 1
   incrementBy: 10
 --- !u!4 &541447735
 Transform:
@@ -8808,7 +8808,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1439524298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11229,7 +11229,7 @@ MonoBehaviour:
   currentLane: 0
   distanceInBetweenLanes: 3
   baseRunSpeed: 6
-  sprintSpeed: 10
+  addedSprintSpeed: 4
   baseSidewaySpeed: 10
   gravity: 14
   termivalVelocity: 20

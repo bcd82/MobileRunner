@@ -15,14 +15,12 @@ public class PlayerMotor : MonoBehaviour
     // visible in editor 
     public float distanceInBetweenLanes = 3.0f; // how wide is each lane
     public float baseRunSpeed = 5.0f; // initial run speed
-    private float actualRunSpeed; // initial run speed
     private float initRunSpeed; // initial run speed
-    public float sprintSpeed = 10.0f; // initial run speed
+    public float addedSprintSpeed = 10.0f; // initial run speed
     public float baseSidewaySpeed = 10.0f; // initial lane switching speed (left right)
     public float gravity = 14.0f; // how fast we will reach the floor when we jump/fall
     public float termivalVelocity = 20.0f; // max speed ? 
-    
-    [SerializeField] private float addedSpeed ;
+
     [SerializeField] private float timer = 1f;
 
     public CharacterController controller; // moves character with collission constraints without rigidbody or something 
@@ -35,7 +33,6 @@ public class PlayerMotor : MonoBehaviour
 
     private void Start()
     {
-        actualRunSpeed = baseRunSpeed;
         initRunSpeed = baseRunSpeed;
         controller = GetComponent<CharacterController>(); // gets the character controller ? 
         anim = GetComponent<Animator>();
@@ -49,19 +46,6 @@ public class PlayerMotor : MonoBehaviour
     {
         if (!isPaused)
             UpdateMotor();
-        if (sprint)
-        {
-            baseRunSpeed = sprintSpeed;
-            timer -= Time.deltaTime;
-            if (timer < 0)
-            {
-                sprint = false;
-            }
-        }
-        else
-        {
-            baseRunSpeed = actualRunSpeed;
-        }
     }
     private void UpdateMotor()
     {
@@ -74,8 +58,8 @@ public class PlayerMotor : MonoBehaviour
         // 
         state.Transition();
         // increases speed over time
-        if (actualRunSpeed < 8 )
-            actualRunSpeed += Time.deltaTime * 0.03f;
+        if (baseRunSpeed < 8)
+            baseRunSpeed += Time.deltaTime * 0.03f;
         // feed state machine our animator some values 
         anim?.SetBool("IsGrounded", isGrounded);
         anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));
@@ -140,20 +124,14 @@ public class PlayerMotor : MonoBehaviour
     }
     public void ResetPlayer()
     {
-        actualRunSpeed = initRunSpeed;
+        baseRunSpeed = initRunSpeed;
         currentLane = 0;
         transform.position = Vector3.zero;
         anim?.SetTrigger("Idle");
         ChangeState(GetComponent<RunningState>());
-        sprint = false;
         PausePlayer();
     }
 
-    public void Sprint()
-    {        
-        timer = 1f;
-        sprint = true;
-    }
     public void OnControllerColliderHit(ControllerColliderHit hit) // built in PlayerController function that contains lots of collider hit info
     {
         string hitLayerName = LayerMask.LayerToName(hit.gameObject.layer); // gets colliding object layer name
@@ -165,13 +143,24 @@ public class PlayerMotor : MonoBehaviour
 
         }
     }
+    IEnumerator CorSprint()
+    {
+        Debug.Log("sprint?");
 
+        baseRunSpeed += addedSprintSpeed;
+        yield return new WaitForSeconds(1f);
+        Debug.Log("slowing down");
+        baseRunSpeed -= addedSprintSpeed;
+
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Sprint"))
         {
-            Sprint();
-            Debug.Log("sprint?");
+            StartCoroutine(CorSprint());
         }
     }
+
+
+
 }
